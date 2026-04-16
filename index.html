@@ -819,6 +819,38 @@
     display: flex; align-items: center; gap: 8px;
   }
 
+  /* 「すべて見る」ボタン（ランキング下・ショート一覧ページへ） */
+  .view-all-wrap {
+    margin-top: 28px;
+    display: flex; justify-content: center;
+  }
+  .view-all-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 28px;
+    background: linear-gradient(135deg, rgba(125,216,248,0.15), rgba(125,216,248,0.05));
+    color: var(--sky);
+    border: 1px solid rgba(125,216,248,0.3);
+    border-radius: 100px;
+    font-family: 'Zen Maru Gothic', sans-serif;
+    font-size: 13px; font-weight: 700;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    cursor: none;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s, background 0.2s;
+  }
+  .view-all-btn:hover {
+    background: linear-gradient(135deg, rgba(125,216,248,0.25), rgba(125,216,248,0.1));
+    border-color: rgba(125,216,248,0.55);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(125,216,248,0.18);
+  }
+  .view-all-btn .arrow {
+    transition: transform 0.2s;
+  }
+  .view-all-btn:hover .arrow {
+    transform: translateX(3px);
+  }
+
   /* ============================================
      Special Pickupセクション
   ============================================ */
@@ -1258,6 +1290,7 @@
     .hamburger { cursor: pointer; }
     .mobile-nav a { cursor: pointer; }
     .mobile-nav-overlay { cursor: pointer; }
+    .view-all-btn { cursor: pointer; }
     .rank-card {
       grid-template-columns: 44px 100px 1fr;
       gap: 12px;
@@ -1300,6 +1333,7 @@
 <div class="mobile-nav" id="mobileNav">
   <a href="#profile"   onclick="closeMobileNav()"><span class="mobile-nav-icon">👤</span>プロフィール</a>
   <a href="#ranking"   onclick="closeMobileNav()"><span class="mobile-nav-icon">🏆</span>ランキング</a>
+  <a href="shorts.html"                            ><span class="mobile-nav-icon">🎬</span>ショート一覧</a>
   <a href="#links"     onclick="closeMobileNav()"><span class="mobile-nav-icon">🔗</span>リンク</a>
   <a href="#milestone" onclick="closeMobileNav()"><span class="mobile-nav-icon">💙</span>記録</a>
   <a href="#kotoba"    onclick="closeMobileNav()"><span class="mobile-nav-icon">💬</span>ことば</a>
@@ -1311,6 +1345,7 @@
   <nav>
     <a href="#profile">プロフィール</a>
     <a href="#ranking">ランキング</a>
+    <a href="shorts.html">ショート一覧</a>
     <a href="#links">リンク</a>
     <a href="#milestone">記録</a>
     <a href="#kotoba">ことば</a>
@@ -1559,6 +1594,14 @@
 
   <!-- ライブ配信TOP5（JSで自動描画） -->
   <div class="ranking-panel" id="panel-live"></div>
+
+  <!-- すべてのショート動画を見る（shorts.htmlへ） -->
+  <div class="view-all-wrap">
+    <a href="shorts.html" class="view-all-btn">
+      <span>🎬 ショート動画をすべて見る</span>
+      <span class="arrow">→</span>
+    </a>
+  </div>
 </section>
 
 

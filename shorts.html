@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="水宮枢（ホロライブDEV_IS / FLOW GLOW）のショート動画アーカイブ一覧 — 非公式ファンサイト「すうの充電station」">
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XRWMNEPCGJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XRWMNEPCGJ');
+</script>
+<title>ショート動画アーカイブ ⚡ すうの充電station</title>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&family=Orbitron:wght@700;900&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a0e1a;
+    --navy2: #0f1528;
+    --navy3: #161d35;
+    --sky: #7dd8f8;
+    --sky2: #a8e8ff;
+    --sky3: #c8f2ff;
+    --pink: #ff7eb3;
+    --pink2: #ffadd0;
+    --yellow: #ffe066;
+    --white: #f0f8ff;
+    --muted: #8aa0c0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--navy);
+    color: var(--white);
+    font-family: 'Zen Maru Gothic', 'Noto Sans JP', sans-serif;
+    overflow-x: hidden;
+    cursor: none;
+    min-height: 100vh;
+  }
+  a { color: inherit; }
+
+  /* カスタムカーソル（⚡雷マーク） */
+  .cursor {
+    width: 22px; height: 28px;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none; z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s;
+    filter: drop-shadow(0 0 4px rgba(255,224,102,0.7));
+  }
+  .cursor.hovered {
+    transform: translate(-50%, -50%) scale(1.3);
+    filter: drop-shadow(0 0 8px rgba(255,224,102,0.9));
+  }
+  .cursor-ring {
+    width: 36px; height: 36px;
+    border: 1px solid rgba(255,224,102,0.35);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none; z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: all 0.18s ease;
+  }
+
+  /* 背景の星 */
+  .stars {
+    position: fixed; inset: 0;
+    pointer-events: none; z-index: 0;
+    overflow: hidden;
+  }
+  .star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle var(--d, 3s) ease-in-out infinite var(--delay, 0s);
+  }
+  @keyframes twinkle {
+    0%,100% { opacity: 0.2; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.3); }
+  }
+
+  /* ヘッダー */
+  header {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 16px 32px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: linear-gradient(to bottom, rgba(10,14,26,0.95), transparent);
+    backdrop-filter: blur(2px);
+  }
+  .logo-link { text-decoration: none; display: inline-block; cursor: none; }
+  .logo {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 13px; font-weight: 700;
+    color: var(--sky);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .logo span { color: var(--pink); }
+  nav { display: flex; gap: 28px; }
+  nav a {
+    font-size: 13px; color: var(--muted);
+    text-decoration: none; letter-spacing: 0.05em;
+    transition: color 0.2s;
+    position: relative;
+    cursor: none;
+  }
+  nav a::after {
+    content: '';
+    position: absolute; bottom: -3px; left: 0; right: 0;
+    height: 1px; background: var(--sky);
+    transform: scaleX(0); transition: transform 0.2s;
+  }
+  nav a:hover { color: var(--sky); }
+  nav a:hover::after { transform: scaleX(1); }
+
+  /* ハンバーガー（スマホ用） */
+  .hamburger {
+    display: none;
+    flex-direction: column; justify-content: center; align-items: center;
+    gap: 5px;
+    width: 40px; height: 40px;
+    background: rgba(125,216,248,0.08);
+    border: 1px solid rgba(125,216,248,0.25);
+    border-radius: 10px;
+    cursor: none;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .hamburger:hover { border-color: rgba(125,216,248,0.5); }
+  .hamburger span {
+    display: block;
+    width: 18px; height: 2px;
+    background: var(--sky);
+    border-radius: 2px;
+    transition: all 0.25s ease;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+  .mobile-nav {
+    position: fixed; top: 0; right: 0;
+    width: 78%; max-width: 320px; height: 100%;
+    background: linear-gradient(180deg, #0a0e1a, #0f1528);
+    z-index: 150;
+    padding: 80px 24px 24px;
+    display: flex; flex-direction: column;
+    gap: 4px;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    border-left: 1px solid rgba(125,216,248,0.15);
+  }
+  .mobile-nav.open { transform: translateX(0); }
+  .mobile-nav a {
+    display: flex; align-items: center; gap: 12px;
+    padding: 16px 12px;
+    font-size: 15px; color: var(--white);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    transition: color 0.2s;
+  }
+  .mobile-nav a:last-child { border-bottom: none; }
+  .mobile-nav a:hover, .mobile-nav a:active { color: var(--sky); }
+  .mobile-nav-icon { font-size: 16px; opacity: 0.7; }
+
+  .mobile-nav-overlay {
+    position: fixed; inset: 0;
+    background: rgba(10,14,26,0.7);
+    z-index: 140;
+    display: none;
+    backdrop-filter: blur(3px);
+  }
+  .mobile-nav-overlay.open { display: block; }
+
+  /* ページ上部エリア */
+  .page-hero {
+    position: relative; z-index: 1;
+    max-width: 1200px;
+    margin: 120px auto 20px;
+    padding: 0 24px;
+  }
+  .back-home { margin-bottom: 24px; }
+  .btn-back {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 8px 16px;
+    background: rgba(125,216,248,0.08);
+    border: 1px solid rgba(125,216,248,0.2);
+    border-radius: 100px;
+    font-size: 12px; color: var(--sky);
+    text-decoration: none;
+    cursor: none;
+    transition: all 0.2s;
+  }
+  .btn-back:hover {
+    background: rgba(125,216,248,0.15);
+    border-color: rgba(125,216,248,0.4);
+    transform: translateX(-2px);
+  }
+  .section-label {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 11px; color: var(--sky);
+    letter-spacing: 0.3em; text-transform: uppercase;
+    margin-bottom: 12px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .section-label::after {
+    content: ''; flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(125,216,248,0.4), transparent);
+  }
+  .section-title {
+    font-size: clamp(24px, 5vw, 40px);
+    font-weight: 900;
+    margin-bottom: 12px;
+  }
+  .page-meta {
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .page-meta strong { color: var(--sky); font-family: 'Orbitron', sans-serif; }
+
+  /* フィルターバー */
+  .filter-bar {
+    position: relative; z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto 28px;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .filter-bar label {
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+  .filter-bar select {
+    background: var(--navy2);
+    color: var(--white);
+    border: 1px solid rgba(125,216,248,0.2);
+    border-radius: 10px;
+    padding: 10px 34px 10px 16px;
+    font-family: inherit;
+    font-size: 14px;
+    cursor: none;
+    min-width: 160px;
+    transition: border-color 0.2s;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237dd8f8' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+  }
+  .filter-bar select:hover,
+  .filter-bar select:focus {
+    border-color: rgba(125,216,248,0.5);
+    outline: none;
+  }
+  .filter-count {
+    margin-left: auto;
+    font-size: 12px;
+    color: var(--muted);
+    font-family: 'Orbitron', sans-serif;
+  }
+  .filter-count strong { color: var(--sky); }
+
+  /* グリッド */
+  .shorts-container {
+    position: relative; z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+  .shorts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  /* カード */
+  .shorts-card {
+    display: flex; flex-direction: column;
+    background: var(--navy2);
+    border: 1px solid rgba(125,216,248,0.1);
+    border-radius: 16px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    cursor: none;
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    position: relative;
+  }
+  .shorts-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(125,216,248,0.03) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .shorts-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(125,216,248,0.3);
+    box-shadow: 0 8px 24px rgba(125,216,248,0.08);
+  }
+  .shorts-thumb {
+    position: relative;
+    aspect-ratio: 9 / 16;
+    background: var(--navy3);
+    overflow: hidden;
+  }
+  .shorts-thumb img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s;
+  }
+  .shorts-card:hover .shorts-thumb img {
+    transform: scale(1.05);
+  }
+  .play-overlay {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(0,0,0,0.22);
+    transition: background 0.2s;
+    z-index: 2;
+  }
+  .shorts-card:hover .play-overlay { background: rgba(0,0,0,0.08); }
+  .play-btn-mini {
+    width: 44px; height: 44px;
+    background: rgba(255,0,0,0.88);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.35);
+    transition: transform 0.2s;
+  }
+  .shorts-card:hover .play-btn-mini { transform: scale(1.1); }
+  .play-btn-mini::after {
+    content: '';
+    width: 0; height: 0;
+    border-top: 7px solid transparent;
+    border-bottom: 7px solid transparent;
+    border-left: 12px solid white;
+    margin-left: 3px;
+  }
+  .shorts-info {
+    padding: 12px 14px 14px;
+    display: flex; flex-direction: column; gap: 6px;
+    position: relative; z-index: 2;
+  }
+  .shorts-title {
+    font-size: 13px; font-weight: 700;
+    line-height: 1.45;
+    color: var(--white);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    word-break: break-word;
+    min-height: 2.9em;
+  }
+  .shorts-date {
+    font-size: 11px;
+    color: var(--muted);
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 0.05em;
+  }
+
+  /* ステータス表示（読み込み中／エラー／該当なし） */
+  .status {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--muted);
+    font-size: 14px;
+  }
+  .status .spinner {
+    display: inline-block;
+    width: 22px; height: 22px;
+    border: 2px solid rgba(125,216,248,0.2);
+    border-top-color: var(--sky);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    vertical-align: middle;
+    margin-right: 10px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .status button {
+    margin-left: 12px;
+    padding: 6px 16px;
+    background: rgba(125,216,248,0.12);
+    border: 1px solid rgba(125,216,248,0.3);
+    border-radius: 100px;
+    color: var(--sky);
+    font-family: inherit;
+    font-size: 12px;
+    cursor: none;
+    transition: background 0.2s;
+  }
+  .status button:hover { background: rgba(125,216,248,0.22); }
+
+  /* フッター */
+  footer {
+    position: relative; z-index: 1;
+    padding: 40px 24px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+  footer a { color: var(--sky); text-decoration: none; }
+
+  /* スマホ対応 */
+  @media (max-width: 640px) {
+    body { cursor: auto; }
+    .cursor, .cursor-ring { display: none; }
+    .hamburger { display: flex; cursor: pointer; }
+    nav { display: none; }
+    .mobile-nav a, .mobile-nav-overlay { cursor: pointer; }
+    .logo-link, .btn-back, .shorts-card, .filter-bar select,
+    .status button { cursor: pointer; }
+
+    header { padding: 12px 20px; }
+    .page-hero { margin-top: 88px; padding: 0 16px; }
+    .filter-bar { padding: 0 16px; }
+    .shorts-container { padding: 0 16px 60px; }
+
+    .shorts-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .shorts-info { padding: 10px 12px 12px; }
+    .shorts-title { font-size: 12px; min-height: 2.7em; }
+    .shorts-date { font-size: 10px; }
+    .play-btn-mini { width: 36px; height: 36px; }
+    .play-btn-mini::after {
+      border-top-width: 6px; border-bottom-width: 6px;
+      border-left-width: 10px;
+    }
+    .filter-count { width: 100%; margin-left: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- カスタムカーソル -->
+<div class="cursor" id="cursor">
+  <svg width="22" height="28" viewBox="-11 -14 22 28" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="2,-13 -5,1 1,1 -2,13 9,-3 2,-3 6,-13"
+      fill="#ffe066" stroke="#ffb800" stroke-width="0.8" stroke-linejoin="round"/>
+  </svg>
+</div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- 背景の星 -->
+<div class="stars" id="stars"></div>
+
+<!-- スマホ用ハンバーガーメニュー -->
+<div class="mobile-nav-overlay" id="mobileOverlay" onclick="closeMobileNav()"></div>
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html"           onclick="closeMobileNav()"><span class="mobile-nav-icon">🏠</span>ホーム</a>
+  <a href="index.html#profile"   onclick="closeMobileNav()"><span class="mobile-nav-icon">👤</span>プロフィール</a>
+  <a href="index.html#ranking"   onclick="closeMobileNav()"><span class="mobile-nav-icon">🏆</span>ランキング</a>
+  <a href="index.html#links"     onclick="closeMobileNav()"><span class="mobile-nav-icon">🔗</span>リンク</a>
+  <a href="index.html#milestone" onclick="closeMobileNav()"><span class="mobile-nav-icon">💙</span>記録</a>
+  <a href="index.html#kotoba"    onclick="closeMobileNav()"><span class="mobile-nav-icon">💬</span>ことば</a>
+</div>
+
+<!-- ヘッダー -->
+<header>
+  <a href="index.html" class="logo-link">
+    <div class="logo">SU<span>★</span>STATION</div>
+  </a>
+  <nav>
+    <a href="index.html">ホーム</a>
+    <a href="index.html#profile">プロフィール</a>
+    <a href="index.html#ranking">ランキング</a>
+    <a href="index.html#milestone">記録</a>
+    <a href="index.html#kotoba">ことば</a>
+  </nav>
+  <button class="hamburger" id="hamburgerBtn" onclick="toggleMobileNav()" aria-label="メニューを開く">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</header>
+
+<!-- ページ上部 -->
+<div class="page-hero">
+  <div class="back-home">
+    <a href="index.html" class="btn-back">← ホームに戻る</a>
+  </div>
+  <div class="section-label">SHORTS</div>
+  <h1 class="section-title">ショート動画アーカイブ</h1>
+  <p class="page-meta">水宮枢さんのショート動画を公開日順にまとめています。<br>全<strong id="totalCount">…</strong>本</p>
+</div>
+
+<!-- フィルター -->
+<div class="filter-bar">
+  <label for="monthFilter">公開年月で絞り込む：</label>
+  <select id="monthFilter">
+    <option value="all">すべて</option>
+  </select>
+  <span class="filter-count">表示中 <strong id="visibleCount">…</strong> 本</span>
+</div>
+
+<!-- 一覧本体 -->
+<div class="shorts-container">
+  <div id="loading" class="status"><span class="spinner"></span>読み込み中…</div>
+  <div id="error" class="status" style="display:none">
+    データの読み込みに失敗しました。
+    <button id="retryBtn">もう一度試す</button>
+  </div>
+  <div id="emptyMsg" class="status" style="display:none">該当するショート動画はありません。</div>
+  <div id="shortsGrid" class="shorts-grid"></div>
+</div>
+
+<!-- フッター -->
+<footer>
+  <p>Fan Made with ♡ — 水宮枢さんと FLOW GLOW の活動を応援しています</p>
+  <p style="margin-top:8px">
+    <a href="index.html">トップページへ戻る</a>
+  </p>
+</footer>
+
+<script>
+// ============================================================
+// データ源：公開スプレッドシート（shortsシート・CSV形式）
+// スプシを更新すれば、このページも数分以内に自動で最新になります
+// ============================================================
+const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSs9mTNI4L30NlYT61mQTNS8uj4tUCEF74T9XHp6U0D0iNxYdt7uFWl9rHbFUdUIclvFlbSeYX5GBEi/pub?gid=2026883503&single=true&output=csv';
+
+const $ = id => document.getElementById(id);
+
+// ============================================================
+// カスタムカーソル（⚡雷マーク）
+// ============================================================
+const cursor = $('cursor');
+const ring = $('cursorRing');
+document.addEventListener('mousemove', e => {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top  = e.clientY + 'px';
+  setTimeout(() => {
+    ring.style.left = e.clientX + 'px';
+    ring.style.top  = e.clientY + 'px';
+  }, 60);
+});
+document.addEventListener('mouseover', e => {
+  if (e.target.closest('a, button, [onclick], select')) {
+    cursor.classList.add('hovered');
+  }
+});
+document.addEventListener('mouseout', e => {
+  if (e.target.closest('a, button, [onclick], select')) {
+    cursor.classList.remove('hovered');
+  }
+});
+
+// ============================================================
+// 星を生成
+// ============================================================
+const starsEl = $('stars');
+for (let i = 0; i < 80; i++) {
+  const s = document.createElement('div');
+  s.className = 'star';
+  const size = Math.random() * 2.5 + 0.5;
+  s.style.cssText = `
+    width:${size}px; height:${size}px;
+    left:${Math.random()*100}%; top:${Math.random()*100}%;
+    --d:${2+Math.random()*4}s; --delay:${Math.random()*4}s;
+  `;
+  starsEl.appendChild(s);
+}
+
+// ============================================================
+// ハンバーガーメニュー
+// ============================================================
+function toggleMobileNav() {
+  $('mobileNav').classList.toggle('open');
+  $('hamburgerBtn').classList.toggle('open');
+  $('mobileOverlay').classList.toggle('open');
+}
+function closeMobileNav() {
+  $('mobileNav').classList.remove('open');
+  $('hamburgerBtn').classList.remove('open');
+  $('mobileOverlay').classList.remove('open');
+}
+
+// ============================================================
+// CSVパーサー（クォート付きフィールドに対応）
+// ============================================================
+function parseCSV(text) {
+  const rows = [];
+  let row = [];
+  let field = '';
+  let inQuotes = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (inQuotes) {
+      if (c === '"') {
+        if (text[i+1] === '"') { field += '"'; i++; }
+        else { inQuotes = false; }
+      } else {
+        field += c;
+      }
+    } else {
+      if (c === '"') inQuotes = true;
+      else if (c === ',') { row.push(field); field = ''; }
+      else if (c === '\n') { row.push(field); rows.push(row); row = []; field = ''; }
+      else if (c === '\r') { /* skip */ }
+      else field += c;
+    }
+  }
+  if (field !== '' || row.length) { row.push(field); rows.push(row); }
+  return rows;
+}
+
+// ============================================================
+// データ取得・描画
+// ============================================================
+let allShorts = [];
+
+async function loadShorts() {
+  $('loading').style.display = 'block';
+  $('error').style.display = 'none';
+  $('emptyMsg').style.display = 'none';
+  $('shortsGrid').innerHTML = '';
+  try {
+    const res = await fetch(CSV_URL, { cache: 'no-store' });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const csv = await res.text();
+    const rows = parseCSV(csv);
+    rows.shift(); // ヘッダー行を除外
+    allShorts = rows
+      .filter(r => r.length >= 4 && r[3]) // videoIdがある行のみ
+      .map(r => ({
+        no: r[0],
+        date: r[1],
+        title: r[2],
+        videoId: r[3].trim()
+      }))
+      .sort((a, b) => b.date.localeCompare(a.date)); // 新しい順
+
+    $('totalCount').textContent = allShorts.length;
+    populateMonthFilter();
+    renderShorts('all');
+    $('loading').style.display = 'none';
+  } catch (err) {
+    console.error('shorts読み込みエラー:', err);
+    $('loading').style.display = 'none';
+    $('error').style.display = 'block';
+  }
+}
+
+function populateMonthFilter() {
+  const set = new Set();
+  allShorts.forEach(s => {
+    if (s.date && s.date.length >= 7) {
+      set.add(s.date.substring(0, 7));
+    }
+  });
+  const monthKeys = Array.from(set).sort().reverse();
+  const sel = $('monthFilter');
+  sel.innerHTML = '<option value="all">すべて</option>';
+  monthKeys.forEach(ym => {
+    const [y, m] = ym.split('-');
+    const opt = document.createElement('option');
+    opt.value = ym;
+    opt.textContent = `${y}年${parseInt(m, 10)}月`;
+    sel.appendChild(opt);
+  });
+}
+
+function renderShorts(monthFilter) {
+  const gridEl = $('shortsGrid');
+  const emptyMsg = $('emptyMsg');
+  const filtered = (monthFilter === 'all')
+    ? allShorts
+    : allShorts.filter(s => s.date && s.date.startsWith(monthFilter));
+
+  $('visibleCount').textContent = filtered.length;
+
+  if (filtered.length === 0) {
+    gridEl.innerHTML = '';
+    emptyMsg.style.display = 'block';
+    return;
+  }
+  emptyMsg.style.display = 'none';
+
+  gridEl.innerHTML = filtered.map(s => {
+    const id = s.videoId;
+    const title = escapeHtml(s.title);
+    const dateDisplay = formatDate(s.date);
+    return `
+      <a class="shorts-card" href="https://www.youtube.com/shorts/${id}" target="_blank" rel="noopener noreferrer" aria-label="${title}">
+        <div class="shorts-thumb">
+          <img src="https://img.youtube.com/vi/${id}/hqdefault.jpg"
+               alt="${title}"
+               loading="lazy"
+               referrerpolicy="no-referrer"
+               onerror="this.onerror=null;this.src='https://img.youtube.com/vi/${id}/mqdefault.jpg'">
+          <div class="play-overlay"><div class="play-btn-mini"></div></div>
+        </div>
+        <div class="shorts-info">
+          <div class="shorts-title">${title}</div>
+          <div class="shorts-date">${dateDisplay}</div>
+        </div>
+      </a>`;
+  }).join('');
+}
+
+function formatDate(iso) {
+  if (!iso) return '';
+  const parts = iso.split('-');
+  if (parts.length !== 3) return iso;
+  return `${parseInt(parts[0], 10)}年${parseInt(parts[1], 10)}月${parseInt(parts[2], 10)}日`;
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  }[c]));
+}
+
+// ============================================================
+// イベント
+// ============================================================
+$('monthFilter').addEventListener('change', e => renderShorts(e.target.value));
+$('retryBtn').addEventListener('click', loadShorts);
+
+// 初回ロード
+loadShorts();
+</script>
+
+</body>
+</html>
