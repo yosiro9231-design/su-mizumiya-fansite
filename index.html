@@ -1107,9 +1107,11 @@
     padding: 2px 10px;
     font-size: 11px; color: var(--sky2);
   }
-  .kotoba-nav {
-    display: flex; align-items: center; justify-content: center;
-    gap: 16px; margin-top: 24px;
+  .kotoba-carousel {
+    display: flex; align-items: center; gap: 12px;
+  }
+  .kotoba-carousel-center {
+    flex: 1; min-width: 0;
   }
   .kotoba-nav-btn {
     width: 44px; height: 44px;
@@ -1120,10 +1122,15 @@
     font-size: 18px;
     display: flex; align-items: center; justify-content: center;
     transition: background 0.2s, border-color 0.2s;
+    flex-shrink: 0;
+    cursor: pointer;
   }
   .kotoba-nav-btn:hover {
     background: rgba(125,216,248,0.1);
     border-color: rgba(125,216,248,0.4);
+  }
+  .kotoba-nav-bottom {
+    display: flex; justify-content: center; margin-top: 16px;
   }
   .kotoba-counter {
     font-family: 'Orbitron', sans-serif;
@@ -1273,6 +1280,10 @@
     .rank-thumbnail-short { width: 53px; }
     .rank-title { font-size: 12px; }
     .ranking-tab { padding: 8px 16px; font-size: 13px; }
+    .kotoba-nav-btn { width: 36px; height: 36px; font-size: 15px; }
+    .kotoba-carousel { gap: 8px; }
+    .kotoba-card { padding: 32px 24px 28px; }
+    .kotoba-card-back { padding: 28px 24px; }
   }
 </style>
 </head>
@@ -1708,33 +1719,37 @@
   <div class="section-label">Words</div>
   <h2 class="section-title">ミズミヤの<span style="color:var(--sky)">コトバ</span></h2>
   <div class="kotoba-card-wrap">
-    <!-- フリップコンテナ -->
-    <div class="kotoba-flipper" id="kotoba-flipper" onclick="toggleFlip()">
-      <!-- 表面 -->
-      <div class="kotoba-card" id="kotoba-card">
-        <div class="kotoba-text" id="kotoba-text"></div>
-        <div class="kotoba-meta">
-          <span class="kotoba-source" id="kotoba-source"></span>
-          <span class="kotoba-tag" id="kotoba-tag"></span>
+    <div class="kotoba-carousel">
+      <button class="kotoba-nav-btn kotoba-nav-prev" onclick="kotobaNav(-1)">&#8592;</button>
+      <div class="kotoba-carousel-center">
+        <!-- フリップコンテナ -->
+        <div class="kotoba-flipper" id="kotoba-flipper" onclick="toggleFlip()">
+          <!-- 表面 -->
+          <div class="kotoba-card" id="kotoba-card">
+            <div class="kotoba-text" id="kotoba-text"></div>
+            <div class="kotoba-meta">
+              <span class="kotoba-source" id="kotoba-source"></span>
+              <span class="kotoba-tag" id="kotoba-tag"></span>
+            </div>
+            <button id="kotoba-link" type="button" class="kotoba-link-btn" style="display:none;" onclick="event.stopPropagation(); openKotobaLink();" ontouchend="event.stopPropagation(); event.preventDefault(); openKotobaLink();">
+              ▶ 配信を見る
+            </button>
+          </div>
+          <!-- 裏面 -->
+          <div class="kotoba-card-back" id="kotoba-card-back">
+            <div class="kotoba-back-label">
+              <img id="kotoba-back-icon" style="width:32px;height:32px;border-radius:50%;object-fit:cover;border:1.5px solid rgba(255,126,179,0.3);vertical-align:middle;margin-right:8px;">
+              ✦ 管理人のひとこと
+            </div>
+            <div class="kotoba-back-text" id="kotoba-back-text"></div>
+          </div>
         </div>
-        <button id="kotoba-link" type="button" class="kotoba-link-btn" style="display:none;" onclick="event.stopPropagation(); openKotobaLink();" ontouchend="event.stopPropagation(); event.preventDefault(); openKotobaLink();">
-          ▶ 配信を見る
-        </button>
+        <p class="kotoba-flip-hint" id="kotoba-flip-hint">タップで管理人コメントを見る ✦</p>
       </div>
-      <!-- 裏面 -->
-      <div class="kotoba-card-back" id="kotoba-card-back">
-        <div class="kotoba-back-label">
-          <img id="kotoba-back-icon" style="width:32px;height:32px;border-radius:50%;object-fit:cover;border:1.5px solid rgba(255,126,179,0.3);vertical-align:middle;margin-right:8px;">
-          ✦ 管理人のひとこと
-        </div>
-        <div class="kotoba-back-text" id="kotoba-back-text"></div>
-      </div>
+      <button class="kotoba-nav-btn kotoba-nav-next" onclick="kotobaNav(1)">&#8594;</button>
     </div>
-    <p class="kotoba-flip-hint" id="kotoba-flip-hint">タップで管理人コメントを見る ✦</p>
-    <div class="kotoba-nav">
-      <button class="kotoba-nav-btn" onclick="kotobaNav(-1)">&#8592;</button>
+    <div class="kotoba-nav-bottom">
       <span class="kotoba-counter" id="kotoba-counter"></span>
-      <button class="kotoba-nav-btn" onclick="kotobaNav(1)">&#8594;</button>
     </div>
     <div class="kotoba-dots" id="kotoba-dots"></div>
   </div>
