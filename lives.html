@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="referrer" content="no-referrer">
-<meta name="description" content="水宮枢（ホロライブDEV_IS / FLOW GLOW）のショート動画アーカイブ一覧 — 非公式ファンサイト「すうの充電station」">
+<meta name="description" content="水宮枢（ホロライブDEV_IS / FLOW GLOW）のライブ配信アーカイブ一覧 — 非公式ファンサイト「すうの充電station」">
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XRWMNEPCGJ"></script>
 <script>
@@ -13,7 +13,7 @@
   gtag('js', new Date());
   gtag('config', 'G-XRWMNEPCGJ');
 </script>
-<title>ショート動画アーカイブ ⚡ すうの充電station</title>
+<title>ライブ配信アーカイブ ⚡ すうの充電station</title>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&family=Orbitron:wght@700;900&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -222,56 +222,6 @@
   }
   .page-meta strong { color: var(--sky); font-family: 'Orbitron', sans-serif; }
 
-  /* 統計カード */
-  .stats-bar {
-    position: relative; z-index: 1;
-    max-width: 1200px;
-    margin: 24px auto 28px;
-    padding: 0 24px;
-    display: flex;
-    gap: 16px;
-  }
-  .stat-card {
-    flex: 1;
-    background: var(--navy2);
-    border: 1px solid rgba(125,216,248,0.12);
-    border-radius: 14px;
-    padding: 18px 20px;
-    text-align: center;
-  }
-  .stat-value {
-    font-family: 'Orbitron', sans-serif;
-    font-size: clamp(22px, 3vw, 32px);
-    font-weight: 900;
-    color: var(--sky);
-    line-height: 1.2;
-  }
-  .stat-label {
-    font-size: 11px;
-    color: var(--muted);
-    margin-top: 6px;
-    letter-spacing: 0.05em;
-  }
-  .stat-card.gold { border-color: rgba(200,160,64,0.3); }
-  .stat-card.gold .stat-value { color: var(--yellow); }
-
-  /* 再生数バッジ（サムネ右上） */
-  .badge-wrap {
-    position: absolute;
-    top: 8px; right: 8px;
-    z-index: 3;
-    pointer-events: none;
-  }
-
-  /* カード内の再生数表示 */
-  .shorts-views {
-    font-size: 11px;
-    color: var(--muted);
-    font-family: 'Orbitron', sans-serif;
-    letter-spacing: 0.03em;
-  }
-  .shorts-views span { color: var(--sky2); }
-
   /* フィルターバー */
   .filter-bar {
     position: relative; z-index: 1;
@@ -323,28 +273,28 @@
   .filter-count strong { color: var(--sky); }
 
   /* グリッド */
-  .shorts-container {
+  .lives-container {
     position: relative; z-index: 1;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 24px 80px;
   }
-  .shorts-grid {
+  .lives-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 16px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
   }
 
-  /* タブレット（641px〜1024px）は4列 */
+  /* タブレット（641px〜1024px）は2列 */
   @media (max-width: 1024px) and (min-width: 641px) {
-    .shorts-grid {
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
+    .lives-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
     }
   }
 
   /* カード */
-  .shorts-card {
+  .lives-card {
     display: flex; flex-direction: column;
     background: var(--navy2);
     border: 1px solid rgba(125,216,248,0.1);
@@ -356,31 +306,31 @@
     transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
     position: relative;
   }
-  .shorts-card::before {
+  .lives-card::before {
     content: '';
     position: absolute; inset: 0;
     background: linear-gradient(135deg, rgba(125,216,248,0.03) 0%, transparent 60%);
     pointer-events: none;
     z-index: 1;
   }
-  .shorts-card:hover {
+  .lives-card:hover {
     transform: translateY(-3px);
     border-color: rgba(125,216,248,0.3);
     box-shadow: 0 8px 24px rgba(125,216,248,0.08);
   }
-  .shorts-thumb {
+  .lives-thumb {
     position: relative;
-    aspect-ratio: 9 / 16;
+    aspect-ratio: 16 / 9;
     background: var(--navy3);
     overflow: hidden;
   }
-  .shorts-thumb img {
+  .lives-thumb img {
     width: 100%; height: 100%;
     object-fit: cover;
     display: block;
     transition: transform 0.3s;
   }
-  .shorts-card:hover .shorts-thumb img {
+  .lives-card:hover .lives-thumb img {
     transform: scale(1.05);
   }
   .play-overlay {
@@ -390,41 +340,41 @@
     transition: background 0.2s;
     z-index: 2;
   }
-  .shorts-card:hover .play-overlay { background: rgba(0,0,0,0.08); }
+  .lives-card:hover .play-overlay { background: rgba(0,0,0,0.08); }
   .play-btn-mini {
-    width: 44px; height: 44px;
+    width: 54px; height: 54px;
     background: rgba(255,0,0,0.88);
     border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
     box-shadow: 0 4px 16px rgba(0,0,0,0.35);
     transition: transform 0.2s;
   }
-  .shorts-card:hover .play-btn-mini { transform: scale(1.1); }
+  .lives-card:hover .play-btn-mini { transform: scale(1.1); }
   .play-btn-mini::after {
     content: '';
     width: 0; height: 0;
-    border-top: 7px solid transparent;
-    border-bottom: 7px solid transparent;
-    border-left: 12px solid white;
-    margin-left: 3px;
+    border-top: 9px solid transparent;
+    border-bottom: 9px solid transparent;
+    border-left: 15px solid white;
+    margin-left: 4px;
   }
-  .shorts-info {
-    padding: 12px 14px 14px;
+  .lives-info {
+    padding: 14px 16px 16px;
     display: flex; flex-direction: column; gap: 6px;
     position: relative; z-index: 2;
   }
-  .shorts-title {
-    font-size: 13px; font-weight: 700;
-    line-height: 1.45;
+  .lives-title {
+    font-size: 14px; font-weight: 700;
+    line-height: 1.5;
     color: var(--white);
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
     word-break: break-word;
-    min-height: 2.9em;
+    min-height: 3em;
   }
-  .shorts-date {
+  .lives-date {
     font-size: 11px;
     color: var(--muted);
     font-family: 'Orbitron', sans-serif;
@@ -477,34 +427,29 @@
   /* スマホ対応 */
   @media (max-width: 640px) {
     body { cursor: auto; }
-    .stats-bar { padding: 0 16px; gap: 10px; }
-    .stat-card { padding: 14px 10px; }
-    .stat-value { font-size: 20px; }
-    .stat-label { font-size: 10px; }
-    .badge-wrap svg { width: 52px; height: 52px; }
     .cursor, .cursor-ring { display: none; }
     .hamburger { display: flex; cursor: pointer; }
     nav { display: none; }
     .mobile-nav a, .mobile-nav-overlay { cursor: pointer; }
-    .logo-link, .btn-back, .shorts-card, .filter-bar select,
+    .logo-link, .btn-back, .lives-card, .filter-bar select,
     .status button { cursor: pointer; }
 
     header { padding: 12px 20px; }
     .page-hero { margin-top: 88px; padding: 0 16px; }
     .filter-bar { padding: 0 16px; }
-    .shorts-container { padding: 0 16px 60px; }
+    .lives-container { padding: 0 16px 60px; }
 
-    .shorts-grid {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
+    .lives-grid {
+      grid-template-columns: 1fr;
+      gap: 14px;
     }
-    .shorts-info { padding: 10px 12px 12px; }
-    .shorts-title { font-size: 12px; min-height: 2.7em; }
-    .shorts-date { font-size: 10px; }
-    .play-btn-mini { width: 36px; height: 36px; }
+    .lives-info { padding: 12px 14px 14px; }
+    .lives-title { font-size: 13px; min-height: 2.9em; }
+    .lives-date { font-size: 10px; }
+    .play-btn-mini { width: 44px; height: 44px; }
     .play-btn-mini::after {
-      border-top-width: 6px; border-bottom-width: 6px;
-      border-left-width: 10px;
+      border-top-width: 7px; border-bottom-width: 7px;
+      border-left-width: 12px;
     }
     .filter-count { width: 100%; margin-left: 0; }
     .filter-group { flex: 1; min-width: 0; }
@@ -538,6 +483,7 @@
   <a href="index.html"           onclick="closeMobileNav()"><span class="mobile-nav-icon">🏠</span>ホーム</a>
   <a href="index.html#profile"   onclick="closeMobileNav()"><span class="mobile-nav-icon">👤</span>プロフィール</a>
   <a href="index.html#ranking"   onclick="closeMobileNav()"><span class="mobile-nav-icon">🏆</span>ランキング</a>
+  <a href="shorts.html"          onclick="closeMobileNav()"><span class="mobile-nav-icon">🎬</span>ショート一覧</a>
   <a href="index.html#links"     onclick="closeMobileNav()"><span class="mobile-nav-icon">🔗</span>リンク</a>
   <a href="index.html#milestone" onclick="closeMobileNav()"><span class="mobile-nav-icon">💙</span>記録</a>
   <a href="index.html#kotoba"    onclick="closeMobileNav()"><span class="mobile-nav-icon">💬</span>ことば</a>
@@ -552,6 +498,7 @@
     <a href="index.html">ホーム</a>
     <a href="index.html#profile">プロフィール</a>
     <a href="index.html#ranking">ランキング</a>
+    <a href="shorts.html">ショート一覧</a>
     <a href="index.html#milestone">記録</a>
     <a href="index.html#kotoba">ことば</a>
   </nav>
@@ -567,37 +514,21 @@
   <div class="back-home">
     <a href="index.html" class="btn-back">← ホームに戻る</a>
   </div>
-  <div class="section-label">SHORTS</div>
-  <h1 class="section-title">ショート動画アーカイブ</h1>
-  <p class="page-meta">水宮枢さんのショート動画を公開日順にまとめています。<br>全<strong id="totalCount">…</strong>本</p>
-</div>
-
-<!-- 統計カード -->
-<div class="stats-bar">
-  <div class="stat-card">
-    <div class="stat-value" id="statTotal">…</div>
-    <div class="stat-label">総動画本数</div>
-  </div>
-  <div class="stat-card">
-    <div class="stat-value" id="statViews">…</div>
-    <div class="stat-label">総再生数</div>
-  </div>
-  <div class="stat-card gold">
-    <div class="stat-value" id="statBadges">…</div>
-    <div class="stat-label">100万回超え</div>
-  </div>
+  <div class="section-label">LIVES</div>
+  <h1 class="section-title">ライブ配信アーカイブ</h1>
+  <p class="page-meta">水宮枢さんのライブ配信アーカイブを配信日順にまとめています。<br>全<strong id="totalCount">…</strong>本</p>
 </div>
 
 <!-- フィルター -->
 <div class="filter-bar">
   <div class="filter-group">
-    <label for="yearFilter">年：</label>
+    <label for="yearFilter">年:</label>
     <select id="yearFilter">
       <option value="all">すべて</option>
     </select>
   </div>
   <div class="filter-group">
-    <label for="monthFilter">月：</label>
+    <label for="monthFilter">月:</label>
     <select id="monthFilter">
       <option value="all">すべて</option>
     </select>
@@ -606,14 +537,14 @@
 </div>
 
 <!-- 一覧本体 -->
-<div class="shorts-container">
+<div class="lives-container">
   <div id="loading" class="status"><span class="spinner"></span>読み込み中…</div>
   <div id="error" class="status" style="display:none">
     データの読み込みに失敗しました。
     <button id="retryBtn">もう一度試す</button>
   </div>
-  <div id="emptyMsg" class="status" style="display:none">該当するショート動画はありません。</div>
-  <div id="shortsGrid" class="shorts-grid"></div>
+  <div id="emptyMsg" class="status" style="display:none">該当するライブ配信はありません。</div>
+  <div id="livesGrid" class="lives-grid"></div>
 </div>
 
 <!-- フッター -->
@@ -626,10 +557,10 @@
 
 <script>
 // ============================================================
-// データ源：公開スプレッドシート（shortsシート・CSV形式）
+// データ源：公開スプレッドシート（配信アーカイブシート・CSV形式）
 // スプシを更新すれば、このページも数分以内に自動で最新になります
 // ============================================================
-const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSs9mTNI4L30NlYT61mQTNS8uj4tUCEF74T9XHp6U0D0iNxYdt7uFWl9rHbFUdUIclvFlbSeYX5GBEi/pub?gid=2026883503&single=true&output=csv';
+const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTIguYM9-48qVDImuo3LK8akPlPLhc2KT8TcBCoWu6Q86YCuMffxv3DsxASXYF3-ZmmkYgBu7DOy8TS/pub?gid=2070544712&single=true&output=csv';
 
 const $ = id => document.getElementById(id);
 
@@ -688,7 +619,7 @@ function closeMobileNav() {
 }
 
 // ============================================================
-// CSVパーサー（クォート付きフィールドに対応）
+// CSVパーサー（クォート付きフィールド・セル内改行に対応）
 // ============================================================
 function parseCSV(text) {
   const rows = [];
@@ -717,40 +648,46 @@ function parseCSV(text) {
 }
 
 // ============================================================
+// 日付ノーマライズ（2025/06/19 も 2025-06-19 も受け入れる）
+// ============================================================
+function normalizeDate(raw) {
+  if (!raw) return '';
+  return String(raw).trim().replace(/\//g, '-').substring(0, 10);
+}
+
+// ============================================================
 // データ取得・描画
 // ============================================================
-let allShorts = [];
+let allLives = [];
 
-async function loadShorts() {
+async function loadLives() {
   $('loading').style.display = 'block';
   $('error').style.display = 'none';
   $('emptyMsg').style.display = 'none';
-  $('shortsGrid').innerHTML = '';
+  $('livesGrid').innerHTML = '';
   try {
     const res = await fetch(CSV_URL, { cache: 'no-store' });
     if (!res.ok) throw new Error('HTTP ' + res.status);
     const csv = await res.text();
     const rows = parseCSV(csv);
     rows.shift(); // ヘッダー行を除外
-    allShorts = rows
-      .filter(r => r.length >= 4 && r[3]) // videoIdがある行のみ
+    allLives = rows
+      .filter(r => r.length >= 4 && r[3] && r[3].trim()) // videoIdがある行のみ
       .map(r => ({
         no: r[0],
-        date: r[1],
-        title: r[2],
-        videoId: r[3].trim(),
-        views: parseInt(r[4] || '0', 10)
+        date: normalizeDate(r[1]),
+        title: String(r[2] || '').replace(/\n/g, ' ').trim(), // タイトル内の改行を半角スペースに
+        videoId: r[3].trim()
       }))
       .sort((a, b) => b.date.localeCompare(a.date)); // 新しい順
 
-    $('totalCount').textContent = allShorts.length;
-    updateStats();
+    $('totalCount').textContent = allLives.length;
     populateYearFilter();
     populateMonthFilter('all');
-    renderShorts();
+    renderLives();
     $('loading').style.display = 'none';
   } catch (err) {
-    console.error('shorts読み込みエラー:', err);
+    console.error('lives読み込みエラー:', err);
     $('loading').style.display = 'none';
     $('error').style.display = 'block';
   }
@@ -758,7 +695,7 @@ async function loadShorts() {
 
 function populateYearFilter() {
   const set = new Set();
-  allShorts.forEach(s => {
+  allLives.forEach(s => {
     if (s.date && s.date.length >= 4) {
       set.add(s.date.substring(0, 4));
     }
@@ -776,7 +713,7 @@ function populateYearFilter() {
 
 function populateMonthFilter(selectedYear) {
   const set = new Set();
-  allShorts.forEach(s => {
+  allLives.forEach(s => {
     if (s.date && s.date.length >= 7) {
       if (selectedYear === 'all' || s.date.substring(0, 4) === selectedYear) {
         set.add(s.date.substring(5, 7));
@@ -801,12 +738,12 @@ function populateMonthFilter(selectedYear) {
   }
 }
 
-function renderShorts() {
+function renderLives() {
   const selectedYear = $('yearFilter').value;
   const selectedMonth = $('monthFilter').value;
-  const gridEl = $('shortsGrid');
+  const gridEl = $('livesGrid');
   const emptyMsg = $('emptyMsg');
-  const filtered = allShorts.filter(s => {
+  const filtered = allLives.filter(s => {
     if (!s.date || s.date.length < 7) return false;
     if (selectedYear !== 'all' && s.date.substring(0, 4) !== selectedYear) return false;
     if (selectedMonth !== 'all' && s.date.substring(5, 7) !== selectedMonth) return false;
@@ -826,117 +763,22 @@ function renderShorts() {
     const id = s.videoId;
     const title = escapeHtml(s.title);
     const dateDisplay = formatDate(s.date);
-    const badge = makeBadgeSVG(s.views);
-    const viewsDisplay = formatViews(s.views);
     return `
-      <a class="shorts-card" href="https://www.youtube.com/shorts/${id}" target="_blank" rel="noopener noreferrer" aria-label="${title}">
-        <div class="shorts-thumb">
+      <a class="lives-card" href="https://www.youtube.com/watch?v=${id}" target="_blank" rel="noopener noreferrer" aria-label="${title}">
+        <div class="lives-thumb">
           <img src="https://img.youtube.com/vi/${id}/hqdefault.jpg"
                alt="${title}"
                loading="lazy"
                referrerpolicy="no-referrer"
                onerror="this.onerror=null;this.src='https://img.youtube.com/vi/${id}/mqdefault.jpg'">
           <div class="play-overlay"><div class="play-btn-mini"></div></div>
-          ${badge ? `<div class="badge-wrap">${badge}</div>` : ''}
         </div>
-        <div class="shorts-info">
-          <div class="shorts-title">${title}</div>
-          <div class="shorts-date">${dateDisplay}</div>
-          <div class="shorts-views">▶ <span>${viewsDisplay}</span></div>
+        <div class="lives-info">
+          <div class="lives-title">${title}</div>
+          <div class="lives-date">${dateDisplay}</div>
         </div>
       </a>`;
   }).join('');
-}
-
-// ============================================================
-// 統計カード
-// ============================================================
-function updateStats() {
-  const total = allShorts.length;
-  const totalViews = allShorts.reduce((sum, s) => sum + s.views, 0);
-  const badgeCount = allShorts.filter(s => s.views >= 1000000).length;
-
-  $('statTotal').textContent = total.toLocaleString();
-  $('statViews').textContent = (totalViews / 10000).toFixed(0) + '万';
-  $('statBadges').textContent = badgeCount;
-}
-
-// ============================================================
-// 再生数フォーマット
-// ============================================================
-function formatViews(v) {
-  if (!v || v === 0) return '—';
-  if (v >= 10000) return (v / 10000).toFixed(1).replace(/\.0$/, '') + '万回';
-  return v.toLocaleString() + '回';
-}
-
-// ============================================================
-// SVGバッジ生成（100万 / 200万 / 700万）
-// ============================================================
-function makeBadgeSVG(views) {
-  if (!views || views < 1000000) return '';
-  let tier;
-  if (views >= 7000000) {
-    tier = {
-      label: '700万', outerGrad: ['#c8a040','#f0d060','#a07818','#f0d870','#907010'],
-      innerGrad: ['#3c2c08','#1a1200'], innerBorder: '#c8a040',
-      textGrad: ['#fffbe0','#ffd700','#7a4a00'], playGrad: ['#fff0a0','#c89000'],
-      decoType: 'crown', decoStroke: '#c8a040'
-    };
-  } else if (views >= 2000000) {
-    tier = {
-      label: '200万', outerGrad: ['#c0c8d0','#e8ecf0','#8890a0','#f0f4f8','#707880'],
-      innerGrad: ['#181e28','#080c10'], innerBorder: '#9098a8',
-      textGrad: ['#ffffff','#d0d8e0','#404850'], playGrad: ['#f0f4f8','#707880'],
-      decoType: 'star6', decoStroke: '#8090a0'
-    };
-  } else {
-    tier = {
-      label: '100万', outerGrad: ['#b07060','#e0a090','#804030','#d09080','#603020'],
-      innerGrad: ['#301410','#100400'], innerBorder: '#b07060',
-      textGrad: ['#fff0d8','#e8a060','#4a1800'], playGrad: ['#ffd8a8','#804010'],
-      decoType: 'diamond', decoStroke: '#b07060'
-    };
-  }
-  const id = 'b' + Math.random().toString(36).substring(2, 8);
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
-  <defs>
-    <linearGradient id="${id}og" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="${tier.outerGrad[0]}"/>
-      <stop offset="30%" stop-color="${tier.outerGrad[1]}"/>
-      <stop offset="50%" stop-color="${tier.outerGrad[2]}"/>
-      <stop offset="70%" stop-color="${tier.outerGrad[3]}"/>
-      <stop offset="100%" stop-color="${tier.outerGrad[4]}"/>
-    </linearGradient>
-    <radialGradient id="${id}ig">
-      <stop offset="0%" stop-color="${tier.innerGrad[0]}"/>
-      <stop offset="100%" stop-color="${tier.innerGrad[1]}"/>
-    </radialGradient>
-    <linearGradient id="${id}tg" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="${tier.textGrad[0]}"/>
-      <stop offset="50%" stop-color="${tier.textGrad[1]}"/>
-      <stop offset="100%" stop-color="${tier.textGrad[2]}"/>
-    </linearGradient>
-    <linearGradient id="${id}pg" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="${tier.playGrad[0]}"/>
-      <stop offset="100%" stop-color="${tier.playGrad[1]}"/>
-    </linearGradient>
-  </defs>
-  <circle cx="32" cy="32" r="30" fill="url(#${id}og)" stroke="none"/>
-  <circle cx="32" cy="32" r="25" fill="url(#${id}ig)" stroke="${tier.innerBorder}" stroke-width="0.8"/>
-  ${tier.decoType === 'crown'
-    ? `<path d="M20 17 L24 22 L28 18 L32 23 L36 18 L40 22 L44 17 L42 25 L22 25 Z" fill="none" stroke="${tier.decoStroke}" stroke-width="0.7"/>`
-    : tier.decoType === 'star6'
-    ? `<polygon points="32,10 34,14 38,14 35,17 36,21 32,19 28,21 29,17 26,14 30,14" fill="none" stroke="${tier.decoStroke}" stroke-width="0.6"/>`
-    : `<rect x="28" y="11" width="8" height="8" rx="1" transform="rotate(45 32 15)" fill="none" stroke="${tier.decoStroke}" stroke-width="0.7"/>`
-  }
-  <text x="32" y="36" text-anchor="middle" font-family="Orbitron,sans-serif" font-weight="900"
-        font-size="14" fill="url(#${id}tg)"
-        filter="drop-shadow(0 2px 5px rgba(0,0,0,0.9)) drop-shadow(0 1px 2px rgba(0,0,0,0.8))">${tier.label}</text>
-  <text x="32" y="48" text-anchor="middle" font-family="Orbitron,sans-serif" font-weight="700"
-        font-size="8" letter-spacing="0.5" fill="url(#${id}pg)"
-        filter="drop-shadow(0 0 2px rgba(0,0,0,0.8)) drop-shadow(0 1px 0 rgba(0,0,0,0.8))">PLAY!!</text>
-</svg>`;
 }
 
 function formatDate(iso) {
@@ -957,13 +799,13 @@ function escapeHtml(s) {
 // ============================================================
 $('yearFilter').addEventListener('change', () => {
   populateMonthFilter($('yearFilter').value);
-  renderShorts();
+  renderLives();
 });
-$('monthFilter').addEventListener('change', renderShorts);
-$('retryBtn').addEventListener('click', loadShorts);
+$('monthFilter').addEventListener('change', renderLives);
+$('retryBtn').addEventListener('click', loadLives);
 
 // 初回ロード
-loadShorts();
+loadLives();
 </script>
 
 </body>

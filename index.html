@@ -823,6 +823,8 @@
   .view-all-wrap {
     margin-top: 28px;
     display: flex; justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
   }
   .view-all-btn {
     display: inline-flex; align-items: center; gap: 8px;
@@ -1334,6 +1336,7 @@
   <a href="#profile"   onclick="closeMobileNav()"><span class="mobile-nav-icon">👤</span>プロフィール</a>
   <a href="#ranking"   onclick="closeMobileNav()"><span class="mobile-nav-icon">🏆</span>ランキング</a>
   <a href="shorts.html"                            ><span class="mobile-nav-icon">🎬</span>ショート一覧</a>
+  <a href="lives.html"                             ><span class="mobile-nav-icon">📺</span>配信一覧</a>
   <a href="#links"     onclick="closeMobileNav()"><span class="mobile-nav-icon">🔗</span>リンク</a>
   <a href="#milestone" onclick="closeMobileNav()"><span class="mobile-nav-icon">💙</span>記録</a>
   <a href="#kotoba"    onclick="closeMobileNav()"><span class="mobile-nav-icon">💬</span>ことば</a>
@@ -1346,6 +1349,7 @@
     <a href="#profile">プロフィール</a>
     <a href="#ranking">ランキング</a>
     <a href="shorts.html">ショート一覧</a>
+    <a href="lives.html">配信一覧</a>
     <a href="#links">リンク</a>
     <a href="#milestone">記録</a>
     <a href="#kotoba">ことば</a>
@@ -1595,10 +1599,14 @@
   <!-- ライブ配信TOP5（JSで自動描画） -->
   <div class="ranking-panel" id="panel-live"></div>
 
-  <!-- すべてのショート動画を見る（shorts.htmlへ） -->
+  <!-- すべての動画を見る（shorts.html / lives.html へ） -->
   <div class="view-all-wrap">
     <a href="shorts.html" class="view-all-btn">
       <span>🎬 ショート動画をすべて見る</span>
+      <span class="arrow">→</span>
+    </a>
+    <a href="lives.html" class="view-all-btn">
+      <span>📺 ライブ配信をすべて見る</span>
       <span class="arrow">→</span>
     </a>
   </div>
