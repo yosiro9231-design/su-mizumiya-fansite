@@ -254,6 +254,22 @@
   }
   .stat-card.gold { border-color: rgba(200,160,64,0.3); }
   .stat-card.gold .stat-value { color: var(--yellow); }
+  .stat-card.clickable { cursor: none; transition: border-color 0.2s, background 0.2s; }
+  .stat-card.clickable:hover {
+    border-color: rgba(200,160,64,0.55);
+    background: rgba(200,160,64,0.08);
+  }
+  .stat-card.clickable.active {
+    border-color: rgba(255,224,102,0.7);
+    background: rgba(200,160,64,0.15);
+    box-shadow: 0 0 16px rgba(255,224,102,0.12);
+  }
+  .stat-card.clickable .stat-label-hint {
+    font-size: 9px;
+    color: rgba(255,224,102,0.5);
+    margin-top: 4px;
+  }
+  .stat-card.clickable.active .stat-label-hint { color: var(--yellow); }
 
   /* 再生数バッジ（サムネ右上） */
   .badge-wrap {
@@ -482,6 +498,7 @@
     .stat-value { font-size: 20px; }
     .stat-label { font-size: 10px; }
     .badge-wrap svg { width: 52px; height: 52px; }
+    .stat-card.clickable { cursor: pointer; }
     .cursor, .cursor-ring { display: none; }
     .hamburger { display: flex; cursor: pointer; }
     nav { display: none; }
@@ -582,9 +599,10 @@
     <div class="stat-value" id="statViews">…</div>
     <div class="stat-label">総再生数</div>
   </div>
-  <div class="stat-card gold">
+  <div class="stat-card gold clickable" id="badgeFilter" onclick="toggleBadgeFilter()">
     <div class="stat-value" id="statBadges">…</div>
     <div class="stat-label">100万回超え</div>
+    <div class="stat-label-hint" id="badgeHint">クリックで絞り込み</div>
   </div>
 </div>
 
@@ -720,6 +738,7 @@ function parseCSV(text) {
 // データ取得・描画
 // ============================================================
 let allShorts = [];
+let badgeFilterOn = false;
 
 async function loadShorts() {
   $('loading').style.display = 'block';
@@ -810,6 +829,7 @@ function renderShorts() {
     if (!s.date || s.date.length < 7) return false;
     if (selectedYear !== 'all' && s.date.substring(0, 4) !== selectedYear) return false;
     if (selectedMonth !== 'all' && s.date.substring(5, 7) !== selectedMonth) return false;
+    if (badgeFilterOn && s.views < 1000000) return false;
     return true;
   });
 
@@ -950,6 +970,16 @@ function escapeHtml(s) {
   return String(s).replace(/[&<>"']/g, c => ({
     '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
   }[c]));
+}
+
+// ============================================================
+// 100万回超え絞り込みトグル
+// ============================================================
+function toggleBadgeFilter() {
+  badgeFilterOn = !badgeFilterOn;
+  $('badgeFilter').classList.toggle('active', badgeFilterOn);
+  $('badgeHint').textContent = badgeFilterOn ? '解除する' : 'クリックで絞り込み';
+  renderShorts();
 }
 
 // ============================================================
