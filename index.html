@@ -36,30 +36,6 @@
     color: var(--white);
     font-family: 'Zen Maru Gothic', 'Noto Sans JP', sans-serif;
     overflow-x: hidden;
-    cursor: none;
-  }
-
-  /* カスタムカーソル（⚡雷マーク） */
-  .cursor {
-    width: 22px; height: 28px;
-    position: fixed; top: 0; left: 0;
-    pointer-events: none; z-index: 9999;
-    transform: translate(-50%, -50%);
-    transition: transform 0.1s;
-    filter: drop-shadow(0 0 4px rgba(255,224,102,0.7));
-  }
-  .cursor.hovered {
-    transform: translate(-50%, -50%) scale(1.3);
-    filter: drop-shadow(0 0 8px rgba(255,224,102,0.9));
-  }
-  .cursor-ring {
-    width: 36px; height: 36px;
-    border: 1px solid rgba(255,224,102,0.35);
-    border-radius: 50%;
-    position: fixed; top: 0; left: 0;
-    pointer-events: none; z-index: 9998;
-    transform: translate(-50%, -50%);
-    transition: all 0.18s ease;
   }
 
   /* 背景の星 */
@@ -221,7 +197,7 @@
     font-family: 'Zen Maru Gothic', sans-serif;
     font-weight: 700; font-size: 15px;
     border: none; border-radius: 100px;
-    cursor: none; text-decoration: none;
+    text-decoration: none;
     transition: transform 0.2s, box-shadow 0.2s;
     display: inline-flex; align-items: center; gap: 8px;
   }
@@ -237,7 +213,7 @@
     font-weight: 700; font-size: 15px;
     border: 1.5px solid rgba(255,255,255,0.2);
     border-radius: 100px;
-    cursor: none; text-decoration: none;
+    text-decoration: none;
     transition: border-color 0.2s, color 0.2s;
     display: inline-flex; align-items: center; gap: 8px;
   }
@@ -384,7 +360,6 @@
     text-decoration: none;
     font-size: 14px; font-weight: 700;
     transition: transform 0.2s, box-shadow 0.2s;
-    cursor: none;
   }
   .sns-btn:hover { transform: translateY(-3px); }
   .sns-yt {
@@ -627,7 +602,6 @@
     font-family: 'Zen Maru Gothic', sans-serif;
     font-size: 14px; font-weight: 700;
     color: var(--muted);
-    cursor: none;
     border: none; background: transparent;
     transition: all 0.25s ease;
     display: flex; align-items: center; gap: 8px;
@@ -666,7 +640,6 @@
     transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
     position: relative;
     overflow: hidden;
-    cursor: none;
   }
   .rank-card::before {
     content: '';
@@ -837,7 +810,6 @@
     font-size: 13px; font-weight: 700;
     letter-spacing: 0.05em;
     text-decoration: none;
-    cursor: none;
     transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s, background 0.2s;
   }
   .view-all-btn:hover {
@@ -875,7 +847,6 @@
     overflow: hidden;
     text-decoration: none;
     transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
-    cursor: none;
     position: relative;
   }
   .pickup-card:hover {
@@ -1147,7 +1118,6 @@
     border: 1px solid rgba(125,216,248,0.2);
     color: var(--sky);
     font-size: 18px;
-    cursor: none;
     display: flex; align-items: center; justify-content: center;
     transition: background 0.2s, border-color 0.2s;
   }
@@ -1191,6 +1161,7 @@
     border: 1px solid rgba(255,70,70,0.3);
     border-radius: 100px;
     font-size: 12px; font-weight: 700;
+    font-family: inherit;
     color: #ff8080;
     text-decoration: none;
     cursor: pointer;
@@ -1198,6 +1169,8 @@
     width: fit-content;
     position: relative; z-index: 10;
     pointer-events: auto;
+    -webkit-tap-highlight-color: rgba(255,70,70,0.2);
+    touch-action: manipulation;
   }
   .kotoba-link-btn:hover {
     background: rgba(255,70,70,0.2);
@@ -1215,7 +1188,6 @@
     background: transparent;
     border: 1px solid rgba(125,216,248,0.25);
     border-radius: 10px;
-    cursor: none;
     padding: 8px;
     transition: border-color 0.2s;
     flex-shrink: 0;
@@ -1287,8 +1259,6 @@
     .tag-section { grid-column: 1; }
     nav { display: none; }
     .hamburger { display: flex; }
-    /* スマホはカスタムカーソルを無効化してタップを確実に効かせる */
-    body { cursor: auto; }
     .hamburger { cursor: pointer; }
     .mobile-nav a { cursor: pointer; }
     .mobile-nav-overlay { cursor: pointer; }
@@ -1316,13 +1286,6 @@
   </p>
 </div>
 
-<div class="cursor" id="cursor">
-  <svg width="22" height="28" viewBox="-11 -14 22 28" xmlns="http://www.w3.org/2000/svg">
-    <polygon points="2,-13 -5,1 1,1 -2,13 9,-3 2,-3 6,-13"
-      fill="#ffe066" stroke="#ffb800" stroke-width="0.8" stroke-linejoin="round"/>
-  </svg>
-</div>
-<div class="cursor-ring" id="cursorRing"></div>
 
 <!-- 背景装飾 -->
 <div class="deco deco1"></div>
@@ -1754,9 +1717,9 @@
           <span class="kotoba-source" id="kotoba-source"></span>
           <span class="kotoba-tag" id="kotoba-tag"></span>
         </div>
-        <a id="kotoba-link" href="#" target="_blank" class="kotoba-link-btn" style="display:none;" onclick="event.stopPropagation()">
+        <button id="kotoba-link" type="button" class="kotoba-link-btn" style="display:none;" onclick="event.stopPropagation(); openKotobaLink();" ontouchend="event.stopPropagation(); event.preventDefault(); openKotobaLink();">
           ▶ 配信を見る
-        </a>
+        </button>
       </div>
       <!-- 裏面 -->
       <div class="kotoba-card-back" id="kotoba-card-back">
@@ -1808,29 +1771,6 @@
 </footer>
 
 <script>
-// カスタムカーソル（⚡雷マーク）
-const cursor = document.getElementById('cursor');
-const ring = document.getElementById('cursorRing');
-document.addEventListener('mousemove', e => {
-  cursor.style.left = e.clientX + 'px';
-  cursor.style.top  = e.clientY + 'px';
-  setTimeout(() => {
-    ring.style.left = e.clientX + 'px';
-    ring.style.top  = e.clientY + 'px';
-  }, 60);
-});
-// リンク・ボタンにホバーで⚡が大きくなる
-document.addEventListener('mouseover', e => {
-  if (e.target.closest('a, button, [onclick]')) {
-    cursor.classList.add('hovered');
-  }
-});
-document.addEventListener('mouseout', e => {
-  if (e.target.closest('a, button, [onclick]')) {
-    cursor.classList.remove('hovered');
-  }
-});
-
 // 星を生成
 const starsEl = document.getElementById('stars');
 for (let i = 0; i < 80; i++) {
@@ -1900,6 +1840,13 @@ const KOTOBA_DATA = [
     tag: '#すうりすへ',
     url: 'https://youtu.be/EkRR6dvT3WE?t=10992',
     memo: '（ここに管理人コメントを入れてください）'
+  },
+  {
+    text: '相手の話を聞くことが多いし、水宮。\nあんまなんか自分の話をめっちゃするっていうより、だいたい聞き役に回ることが多いから。\n\n〜（中略）〜\n\nなんかその仕事面に対しての、自分の意見とかは言うけど、\nなんかそれ以外内面に対して、まあなんか、あんまなんかそんな話さんしね。',
+    source: '【ウマ娘プリティーダービー】完全初見#12 新人トレーナ✨️俺の女編【水宮枢／ホロライブDEV_IS】2026年4月16日 ライブ配信',
+    tag: '#自分について',
+    url: 'https://youtu.be/6UBfg_TGcJ4?t=14424',
+    memo: '裏を返せば、\n\n仕事では自分の意思を通すということ。'
   }
 ];
 
@@ -1951,9 +1898,10 @@ function renderKotoba(animate) {
   });
   const linkEl = document.getElementById('kotoba-link');
   if (d.url) {
-    linkEl.href = d.url;
+    linkEl.dataset.url = d.url;
     linkEl.style.display = 'inline-flex';
   } else {
+    linkEl.dataset.url = '';
     linkEl.style.display = 'none';
   }
 
@@ -1970,6 +1918,13 @@ function renderKotoba(animate) {
     hint.style.display = 'none';
   }
 }
+
+// 配信を見るボタン（モバイルアプリ復帰後も確実に動作させる）
+function openKotobaLink() {
+  const url = document.getElementById('kotoba-link').dataset.url;
+  if (url) location.href = url;
+}
+
 
 // フリップ切り替え（裏面の高さに合わせてカードサイズを変える）
 function toggleFlip() {
@@ -1992,7 +1947,7 @@ function kotobaNav(dir) {
     const d = document.createElement('div');
     d.className = 'kotoba-dot' + (i === 0 ? ' active' : '');
     d.onclick = () => { kotobaIndex = i; renderKotoba(true); };
-    d.style.cursor = 'none';
+    d.style.cursor = 'pointer';
     dots.appendChild(d);
   });
   renderKotoba(false);
@@ -2022,14 +1977,14 @@ document.querySelectorAll('a[href^="#"]:not(#kotoba-link)').forEach(a => {
 //  ★ 更新日（RANKING_UPDATED）も一緒に書き換えてください！
 // ============================================================
 
-const RANKING_UPDATED = '2026年3月30日';
+const RANKING_UPDATED = '2026年4月17日';
 
 const RANKING_DATA = {
   shorts: [
     {
       id: 's2vmtKpCW2k',
       title: '激ムズokp cipher❤️‍🔥踊ってみた',
-      views: '232万回',
+      views: '236万回',
       date: '2025年12月2日',
       tag: '#ダンス',
       short: true,
@@ -2038,7 +1993,7 @@ const RANKING_DATA = {
     {
       id: 'NbetqLXuQuA',
       title: '激ムズステップ UNDEAD／踊ってみた',
-      views: '155万回',
+      views: '157万回',
       date: '2025年11月25日',
       tag: '#ダンス',
       short: true,
@@ -2047,7 +2002,7 @@ const RANKING_DATA = {
     {
       id: '8semriqNmuI',
       title: 'ウチらが噂のウマ娘／踊ってみた',
-      views: '125万回',
+      views: '128万回',
       date: '2026年2月18日',
       tag: '#ダンス',
       short: true,
@@ -2056,7 +2011,7 @@ const RANKING_DATA = {
     {
       id: 'Ty2kW6ztruY',
       title: 'コンココンコンココンコンコン／轟はじめ',
-      views: '112万回',
+      views: '113万回',
       date: '2025年12月7日',
       tag: '#ダンス',
       short: true,
@@ -2065,7 +2020,7 @@ const RANKING_DATA = {
     {
       id: 'B3AyCf2Yr-Q',
       title: 'オドループ／自由に動いてみた',
-      views: '99万回',
+      views: '100万回',
       date: '2025年12月15日',
       tag: '#ダンス',
       short: true,
@@ -2076,7 +2031,7 @@ const RANKING_DATA = {
     {
       id: 'NzrcQrGM2zs',
       title: '【#ホロライブカウントダウン】オフコラボでミラー配信皆で一緒に年をこそう！【FLOW GLOW 水宮枢】',
-      views: '84万回',
+      views: '85万回',
       date: '2024年12月31日',
       tag: '#カウントダウン',
       short: false,
@@ -2085,7 +2040,7 @@ const RANKING_DATA = {
     {
       id: 'wWFk5Oms1wg',
       title: '【初配信】ゴゴゴゴ、、#水宮枢初配信 #hololiveDEV_IS #FLOWGLOW',
-      views: '66万回',
+      views: '67万回',
       date: '2024年11月9日',
       tag: '#初配信',
       short: false,
